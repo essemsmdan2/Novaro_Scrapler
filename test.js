@@ -12,7 +12,7 @@ const tableURL = {
 
 (async () => {
 
-    const wsChromeEndpointurl = "ws://127.0.0.1:9222/devtools/browser/bb502975-eef4-4c76-af54-7c1a0d5a0d84";
+    const wsChromeEndpointurl = "ws://127.0.0.1:9222/devtools/browser/a3f83a95-69ac-407c-b5e0-ce73aac1e8fb";
     const browser = await puppeteer.connect({
         browserWSEndpoint: wsChromeEndpointurl
     });
@@ -20,11 +20,8 @@ const tableURL = {
 
 
     const page = await browser.newPage();
-    await page.goto('https://www.novaragnarok.com/?module=vending&action=item&id=2162');
+    // await page.goto('https://www.novaragnarok.com/?module=vending&action=item&id=2162');
 
-    const bodyHandle = await page.$('body');
-    const html = await page.evaluate(body => body.innerHTML, bodyHandle);
-    await bodyHandle.dispose();
 
     const getTableData = async (itemId, tableType, callback) => {
         let url = '';
@@ -39,6 +36,10 @@ const tableURL = {
         }
         let urlItem = url + itemId;
         await page.goto(urlItem);
+        const bodyHandle = await page.$('body');
+        const html = await page.evaluate(body => body.innerHTML, bodyHandle);
+
+
         if (html) {
             const dom = new JSDOM(html);
 
@@ -98,8 +99,7 @@ const tableURL = {
     };
 
 
-
-    getTableData('2162', 'LIVE', (tableData, iconURL, itemName) => {
+    getTableData('100371', 'LIVE', (tableData, iconURL, itemName) => {
         console.log(tableData);
         console.log(iconURL);
         console.log(itemName);
