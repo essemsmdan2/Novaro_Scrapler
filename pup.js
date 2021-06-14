@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const regraNegocio = require("./regraNegocio");
+const regraNegocios = regraNegocio.regraNegocio;
 const ObjFoods = regraNegocio.regraNegocio.ObjFoods;
 const Wg = ObjFoods["Warg Blood Cocktail"];
 
@@ -15,8 +16,10 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
   const page = await browser.newPage();
   const url = "https://www.novaragnarok.com/?module=vending&action=item&id=";
 
-  mainExecute();
-
+  //executaveis
+  await mainExecute();
+  regraNegocios.resolveAll();
+  console.log("the end");
   //percorrer um array de ids
   //verificar todos os valores de market
   //atualiza os valores do nosso DB
@@ -35,8 +38,13 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
       let marketresquest = await getItemMarketPrice();
       if (marketresquest) {
         newMarketValue.push(marketresquest);
+        recipe.value = marketresquest;
       } else {
-        newMarketValue.push(await buscaNpcSell());
+        let npcsell = await buscaNpcSell();
+        if (npcsell) {
+          newMarketValue.push(npcsell);
+          recipe.value = npcsell;
+        }
       }
 
       ValueBefore.push(recipe.value);
@@ -66,7 +74,7 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
   //leva até a página de npc Sell
   async function buscaNpcSell(itemId) {
     await page.click("#nova-market-link > a:nth-child(1)");
-    await page.waitForSelector(".vertical-table", { timeout: 9000 });
+    await page.waitForSelector(".vertical-table", { timeout: 5000 });
     const result = await page.evaluate((e) => {
       return document.getElementsByTagName("td")[23].innerText;
     });
@@ -79,7 +87,7 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
     try {
       await page.waitForSelector(
         "#itemtable > tbody > tr:nth-child(1) > td.sorting_1 > span",
-        { timeout: 3000 }
+        { timeout: 5000 }
       );
       const result = await page.evaluate((e) => {
         return document.querySelectorAll("span")[26].innerText;
