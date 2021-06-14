@@ -17,9 +17,11 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
   const url = "https://www.novaragnarok.com/?module=vending&action=item&id=";
 
   //executaveis
-  await mainExecute();
+
+  updateItemMarketValues();
   regraNegocios.resolveAll();
   console.log("the end");
+
   //percorrer um array de ids
   //verificar todos os valores de market
   //atualiza os valores do nosso DB
@@ -28,7 +30,7 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
 
   //executa todos os passos
 
-  async function mainExecute() {
+  async function updateItemMarketValues() {
     let newMarketValue = [];
     let ValueBefore = [];
 
