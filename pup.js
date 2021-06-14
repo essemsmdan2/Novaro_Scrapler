@@ -1,13 +1,40 @@
 const puppeteer = require("puppeteer");
 var regraNegocio = require("./regraNegocio");
-regraNegocio = regraNegocio.regraNegocio;
-const dataBase = require("./dataBase");
 
-const foodDatabase = dataBase.dataBase.ObjFoods;
+let dataBase = {
+  ObjFoods: {
+    "Warg Blood Cocktail": {
+      id: 12430,
+      marketPrice: 15999,
+
+      ArrRecipe: [
+        {
+          name: "Cold Ice",
+          id: 6253,
+          count: 2,
+          value: 3050,
+        },
+        {
+          name: "Blood of Wolf",
+          id: 6252,
+          count: 2,
+          value: 4998,
+        },
+        {
+          name: "Melage Pot",
+          id: 6248,
+          count: 1,
+          value: 300,
+        },
+      ],
+    },
+  },
+};
+
 //cria a página através do webkit
 (async () => {
   const wsChromeEndpointurl =
-    "ws://127.0.0.1:9222/devtools/browser/1971bb4b-6422-4b3e-927a-f337732b7fe0";
+    "ws://127.0.0.1:9222/devtools/browser/bb2240a0-9708-42a4-98f3-93bec99a892f";
   const browser = await puppeteer.connect({
     browserWSEndpoint: wsChromeEndpointurl,
   });
@@ -17,8 +44,14 @@ const foodDatabase = dataBase.dataBase.ObjFoods;
 
   //executaveis
 
-  //main(foodDatabase["Warg Blood Cocktail"]);
-  //regraNegocios.resolveAll();
+  await main(dataBase.ObjFoods["Warg Blood Cocktail"]);
+
+  const seila = regraNegocio.regraNegocio.valorTotal(
+    dataBase.ObjFoods,
+    "Warg Blood Cocktail"
+  );
+  console.log(seila);
+
   //console.log("the end");
 
   //executa todos os passos
@@ -33,11 +66,13 @@ const foodDatabase = dataBase.dataBase.ObjFoods;
       let marketresquest = await getItemMarketPrice();
       if (marketresquest) {
         newMarketValue.push(marketresquest);
-        recipe.value = marketresquest;
+        recipe.value = parseInt(marketresquest).toFixed(3);
+        console.log(marketresquest);
       } else {
         let npcsell = await buscaNpcSell();
         if (npcsell) {
           newMarketValue.push(npcsell);
+
           recipe.value = npcsell;
         }
       }
@@ -63,7 +98,7 @@ const foodDatabase = dataBase.dataBase.ObjFoods;
       return document.getElementsByTagName("td")[23].innerText;
     });
 
-    return result;
+    return parseFloat(result.replace(/,/g, ".")).toFixed(2);
   }
 
   //Busca dentro do MarketPrice
@@ -76,6 +111,7 @@ const foodDatabase = dataBase.dataBase.ObjFoods;
       const result = await page.evaluate((e) => {
         return document.querySelectorAll("span")[26].innerText;
       });
+      result.toString();
 
       return result;
     } catch (error) {

@@ -3,7 +3,7 @@
 // confira os itens necessários para fabricar: 1 manage pot, 2 Cold Ice, 3 Blood of Wolf
 let regraNegocio = {
   resolveAll: function () {
-    const result = this.valorTotal(this.ObjFoods, "Warg Blood Cocktail");
+    const result = this.valorTotal(food);
     console.log(result);
   },
 
@@ -17,6 +17,7 @@ let regraNegocio = {
     ArrResult.push(foodName);
     Arfoods.forEach((item) => {
       itemSoma = itemSoma + item.value * item.count;
+      console.log(item);
     });
 
     fabricPrice["Fabric Price"] = itemSoma;
