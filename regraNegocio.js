@@ -2,33 +2,6 @@
 
 // confira os itens necessários para fabricar: 1 manage pot, 2 Cold Ice, 3 Blood of Wolf
 let regraNegocio = {
-  ObjFoods: {
-    "Warg Blood Cocktail": {
-      id: 12430,
-      marketPrice: 15999,
-
-      ArrRecipe: [
-        {
-          name: "Cold Ice",
-          id: 6253,
-          count: 2,
-          value: 3050,
-        },
-        {
-          name: "Blood of Wolf",
-          id: 6252,
-          count: 2,
-          value: 4998,
-        },
-        {
-          name: "Melage Pot",
-          id: 6248,
-          count: 1,
-          value: 300,
-        },
-      ],
-    },
-  },
   resolveAll: function () {
     const result = this.valorTotal(this.ObjFoods, "Warg Blood Cocktail");
     console.log(result);

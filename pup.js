@@ -1,14 +1,13 @@
 const puppeteer = require("puppeteer");
-const regraNegocio = require("./regraNegocio");
-const regraNegocios = regraNegocio.regraNegocio;
-const ObjFoods = regraNegocio.regraNegocio.ObjFoods;
-const Wg = ObjFoods["Warg Blood Cocktail"];
+var regraNegocio = require("./regraNegocio");
+regraNegocio = regraNegocio.regraNegocio;
+const dataBase = require("./dataBase");
 
+const foodDatabase = dataBase.dataBase.ObjFoods;
+//cria a página através do webkit
 (async () => {
-  //cria a página através do webkit
-
   const wsChromeEndpointurl =
-    "ws://127.0.0.1:9222/devtools/browser/1a29c4d5-5b60-4ce2-88ad-b0708e33ff7e";
+    "ws://127.0.0.1:9222/devtools/browser/1971bb4b-6422-4b3e-927a-f337732b7fe0";
   const browser = await puppeteer.connect({
     browserWSEndpoint: wsChromeEndpointurl,
   });
@@ -18,19 +17,13 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
 
   //executaveis
 
-  updateItemMarketValues();
-  regraNegocios.resolveAll();
-  console.log("the end");
-
-  //percorrer um array de ids
-  //verificar todos os valores de market
-  //atualiza os valores do nosso DB
-
-  async function atualizaValores() {}
+  //main(foodDatabase["Warg Blood Cocktail"]);
+  //regraNegocios.resolveAll();
+  //console.log("the end");
 
   //executa todos os passos
 
-  async function updateItemMarketValues() {
+  async function main(Wg) {
     let newMarketValue = [];
     let ValueBefore = [];
 
@@ -50,21 +43,10 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
       }
 
       ValueBefore.push(recipe.value);
-
-      console.log(
-        `Valor Hoje = ${newMarketValue} // Valor Anterior = ${ValueBefore}`
-      );
     }
-  }
-
-  //vai a página de todos os itens e verifica os valores
-  async function buscaItensReceita(ArrObjItem) {
-    for (var item of ArrItemsRecipe) {
-      const itemMarketPrice = await goToItemUrl(item.id);
-      //console.log(itemMarketPrice);
-      console.log(itemMarketPrice);
-      marketPrice.push(itemMarketPrice);
-    }
+    console.log(
+      `Valor Hoje = ${newMarketValue} // Valor Anterior = ${ValueBefore}`
+    );
   }
 
   //leva a página até o item id
@@ -76,11 +58,11 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
   //leva até a página de npc Sell
   async function buscaNpcSell(itemId) {
     await page.click("#nova-market-link > a:nth-child(1)");
-    await page.waitForSelector(".vertical-table", { timeout: 5000 });
+    await page.waitForSelector(".vertical-table", { timeout: 3000 });
     const result = await page.evaluate((e) => {
       return document.getElementsByTagName("td")[23].innerText;
     });
-    console.log(result);
+
     return result;
   }
 
@@ -89,12 +71,12 @@ const Wg = ObjFoods["Warg Blood Cocktail"];
     try {
       await page.waitForSelector(
         "#itemtable > tbody > tr:nth-child(1) > td.sorting_1 > span",
-        { timeout: 5000 }
+        { timeout: 3000 }
       );
       const result = await page.evaluate((e) => {
         return document.querySelectorAll("span")[26].innerText;
       });
-      console.log(result);
+
       return result;
     } catch (error) {
       console.log("Item sem valor no mercado. Checando no NpcSell");
