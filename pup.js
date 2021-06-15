@@ -1,14 +1,51 @@
 const puppeteer = require("puppeteer");
 var regraNegocio = require("./regraNegocio");
 
-const savageBBQids = [
-  [12429, 1],
-  [6249, 1],
-  [6250, 1],
-  [6251, 1],
-  [6248, 1],
-];
+const foodIds = {
+  savageBBQids: [
+    [12429, 1],
+    [6249, 1],
+    [6250, 1],
+    [6251, 1],
+    [6248, 1],
+  ],
 
+  droserHerbStewids: [
+    [12433, 1],
+    [6248, 1],
+    [6255, 1],
+    [507, 3],
+    [509, 3],
+    [510, 3],
+    [6259, 3],
+  ],
+  Minor_Brisket_ids: [
+    [12431, 1],
+    [6248, 1],
+    [6255, 1],
+    [6254, 2],
+  ],
+  Warg_Blood_Cocktail_ids: [
+    [12430, 1],
+    [6248, 1],
+    [6253, 2],
+    [6252, 3],
+  ],
+  Siroma_Icetea_ids: [
+    [12432, 1],
+    [6248, 1],
+    [6258, 1],
+    [6257, 2],
+    [6256, 3],
+  ],
+  Petite_Tail_Noodles_ids: [
+    [12434, 1],
+    [6248, 1],
+    [6262, 1],
+    [6261, 2],
+    [6260, 3],
+  ],
+};
 //cria a página através do webkit
 (async () => {
   const wsChromeEndpointurl =
@@ -22,47 +59,30 @@ const savageBBQids = [
 
   //executaveis
 
-  const SavagBBQ = await criaItemCompleto(savageBBQids);
+  const SavagBBQ = await criaItemCompleto(foodIds.savageBBQids);
   console.log(SavagBBQ);
+  const Drosera_Herb_Stew = await criaItemCompleto(
+    foodIds["droserHerbStewids"]
+  );
+  console.log(Drosera_Herb_Stew);
+  const Minor = await criaItemCompleto(foodIds.Minor_Brisket_ids);
+  console.log(Minor);
+  const Warg = await criaItemCompleto(foodIds.Warg_Blood_Cocktail_ids);
+  console.log(Warg);
+  const Siroma = await criaItemCompleto(foodIds.Siroma_Icetea_ids);
+  console.log(Siroma);
+  const Petite = await criaItemCompleto(foodIds.Petite_Tail_Noodles_ids);
+  console.log(Petite);
 
   console.log("end");
 
-  //executa todos os passos
+  //gravar dados coletados<<
 
-  // async function main(ObjItem) {
-  //   let ArrRecipe = ObjItem.Recipes;
-  //   let newMarketValue = [];
-  //   let ValueBefore = [];
-  //   await goToItemUrl(12430);
-  //   ObjItem.marketPrice = await getItemMarketPrice();
-
-  //   for (var recipe of ArrRecipe) {
-  //     await goToItemUrl(recipe.id);
-
-  //     let marketresquest = await getItemMarketPrice();
-  //     if (marketresquest) {
-  //       newMarketValue.push(marketresquest);
-  //       recipe.value = marketresquest;
-  //       console.log(marketresquest);
-  //     } else {
-  //       let npcsell = await buscaNpcSell();
-  //       if (npcsell) {
-  //         newMarketValue.push(npcsell);
-
-  //         recipe.value = npcsell;
-  //       }
-  //     }
-
-  //     ValueBefore.push(recipe.value);
-  //   }
-  //   console.log(
-  //     `Valor Hoje = ${newMarketValue} // Valor Anterior = ${ValueBefore}`
-  //   );
-  // }
+  //executaveis
 
   //versão final entregando a food completa = recipes e lucro;
-  async function criaItemCompleto(itemsId) {
-    const item = await criaItemRecipes(itemsId);
+  async function criaItemCompleto(itemsIdArray) {
+    const item = await criaItemRecipes(itemsIdArray);
 
     const resultadoLucroPerda = regraNegocio.regraNegocio.valorTotal(
       item,
