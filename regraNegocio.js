@@ -4,20 +4,19 @@
 let regraNegocio = {
   resolveAll: function () {
     const result = this.valorTotal(food);
-    console.log(result);
   },
 
   valorTotal: function (Obj, foodName) {
-    let Arfoods = Obj[foodName].ArrRecipe;
+    let ArfoodsRecipes = Obj.Recipes;
+    let StrFoodName = Obj.name;
     let itemSoma = 0;
     let marketPrice = {};
-    marketPrice["Market Price"] = Obj[foodName]["marketPrice"];
+    marketPrice["Market Price"] = Obj.value;
     let fabricPrice = {};
     let ArrResult = [];
-    ArrResult.push(foodName);
-    Arfoods.forEach((item) => {
+    ArrResult.push(StrFoodName);
+    ArfoodsRecipes.forEach((item) => {
       itemSoma = itemSoma + item.value * item.count;
-      console.log(item);
     });
 
     fabricPrice["Fabric Price"] = itemSoma;
@@ -40,6 +39,7 @@ let regraNegocio = {
   lucroOuPerda: function (valorFabrica, valorVenda) {
     let porcentagem = 0;
     let variacao = 0;
+
     if (valorFabrica > valorVenda) {
       variacao = valorVenda - valorFabrica;
       porcentagem = Math.floor(
