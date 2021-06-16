@@ -49,12 +49,14 @@ const foodIds = {
 //cria a página através do webkit
 (async () => {
   const wsChromeEndpointurl =
-    "ws://127.0.0.1:9222/devtools/browser/bb2240a0-9708-42a4-98f3-93bec99a892f";
+    "ws://127.0.0.1:9222/devtools/browser/70e09386-b228-41ed-b55f-35fe358536d4";
   const browser = await puppeteer.connect({
     browserWSEndpoint: wsChromeEndpointurl,
   });
 
   const page = await browser.newPage();
+  const urlItemoverview =
+    "https://www.novaragnarok.com/?module=vending&action=view&id=";
   const url = "https://www.novaragnarok.com/?module=vending&action=item&id=";
 
   //executaveis
@@ -100,7 +102,7 @@ const foodIds = {
 
   //leva até a página de npc Sell
   async function buscaNpcSell(itemId) {
-    await page.click("#nova-market-link > a:nth-child(1)");
+    await page.goto(urlItemoverview + itemId);
     await page.waitForSelector(".vertical-table", { timeout: 3000 });
     const result = await page.evaluate((e) => {
       return document.getElementsByTagName("td")[23].innerText;
@@ -131,12 +133,12 @@ const foodIds = {
   }
 
   //cria um objeto e push pra Objfoods
-  async function tryMarketandSell() {
+  async function tryMarketandSell(id) {
     let marketresquest = await getItemMarketPrice();
     if (marketresquest) {
       return marketresquest;
     } else {
-      let npcsell = await buscaNpcSell();
+      let npcsell = await buscaNpcSell(id);
       if (npcsell) {
         return npcsell;
       }
@@ -151,7 +153,7 @@ const foodIds = {
       }),
       id: id,
       count: qnt ? qnt : 1,
-      value: await tryMarketandSell(),
+      value: await tryMarketandSell(id),
     };
 
     return Item;
