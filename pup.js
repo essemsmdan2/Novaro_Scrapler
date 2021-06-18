@@ -49,7 +49,7 @@ const foodIds = {
 //cria a página através do webkit
 (async () => {
   const wsChromeEndpointurl =
-    "ws://127.0.0.1:9222/devtools/browser/70e09386-b228-41ed-b55f-35fe358536d4";
+    "ws://127.0.0.1:9222/devtools/browser/e6646e6b-0da1-4691-8744-5fe878db88e4";
   const browser = await puppeteer.connect({
     browserWSEndpoint: wsChromeEndpointurl,
   });
