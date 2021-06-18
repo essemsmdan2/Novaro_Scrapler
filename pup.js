@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 var regraNegocio = require("./regraNegocio");
-
+const fs = require("fs");
 const foodIds = {
   savageBBQids: [
     [12429, 1],
@@ -49,7 +49,7 @@ const foodIds = {
 //cria a página através do webkit
 (async () => {
   const wsChromeEndpointurl =
-    "ws://127.0.0.1:9222/devtools/browser/e6646e6b-0da1-4691-8744-5fe878db88e4";
+    "ws://127.0.0.1:9222/devtools/browser/69a9de80-05cf-417f-81fb-29b61e5611da";
   const browser = await puppeteer.connect({
     browserWSEndpoint: wsChromeEndpointurl,
   });
@@ -61,22 +61,27 @@ const foodIds = {
 
   //executaveis
 
-  const SavagBBQ = await criaItemCompleto(foodIds.savageBBQids);
-  console.log(SavagBBQ);
-  const Drosera_Herb_Stew = await criaItemCompleto(
-    foodIds["droserHerbStewids"]
-  );
-  console.log(Drosera_Herb_Stew);
-  const Minor = await criaItemCompleto(foodIds.Minor_Brisket_ids);
-  console.log(Minor);
-  const Warg = await criaItemCompleto(foodIds.Warg_Blood_Cocktail_ids);
-  console.log(Warg);
-  const Siroma = await criaItemCompleto(foodIds.Siroma_Icetea_ids);
-  console.log(Siroma);
-  const Petite = await criaItemCompleto(foodIds.Petite_Tail_Noodles_ids);
-  console.log(Petite);
+  const result = {
+    SavagBBQ: await criaItemCompleto(foodIds.savageBBQids),
 
-  console.log("end");
+    Drosera_Herb_Stew: await criaItemCompleto(foodIds["droserHerbStewids"]),
+
+    Minor: await criaItemCompleto(foodIds.Minor_Brisket_ids),
+
+    Warg: await criaItemCompleto(foodIds.Warg_Blood_Cocktail_ids),
+
+    Siroma: await criaItemCompleto(foodIds.Siroma_Icetea_ids),
+
+    Petite: await criaItemCompleto(foodIds.Petite_Tail_Noodles_ids),
+  };
+
+  fs.writeFile("./save.txt", JSON.stringify(result), "utf8", function (err) {
+    if (err) {
+      return console.log(err);
+    }
+
+    console.log("The file was saved!");
+  });
 
   //gravar dados coletados<<
 
