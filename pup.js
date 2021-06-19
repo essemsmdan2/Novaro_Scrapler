@@ -49,7 +49,7 @@ const foodIds = {
 //cria a página através do webkit
 (async () => {
   const wsChromeEndpointurl =
-    "ws://127.0.0.1:9222/devtools/browser/69a9de80-05cf-417f-81fb-29b61e5611da";
+    "ws://127.0.0.1:9222/devtools/browser/ac24b71f-4648-4bc0-8c16-a4376ffd0954";
   const browser = await puppeteer.connect({
     browserWSEndpoint: wsChromeEndpointurl,
   });
@@ -79,6 +79,7 @@ const foodIds = {
     if (err) {
       return console.log(err);
     }
+    console.log(result);
 
     console.log("The file was saved!");
   });
