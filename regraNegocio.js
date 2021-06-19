@@ -1,5 +1,5 @@
 // Escolher um Siroma Ice Tea +20 DEX
-
+//test
 // confira os itens necessários para fabricar: 1 manage pot, 2 Cold Ice, 3 Blood of Wolf
 let regraNegocio = {
   resolveAll: function () {
