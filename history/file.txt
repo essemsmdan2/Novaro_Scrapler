@@ -1,0 +1,28 @@
+
+21/06/2021--13:38
+{"name":"Savage BBQ","id":12429,"count":1,"value":"127888","Recipes":[{"name":"Savage Meat","id":6249,"count":1,"value":"114000"},{"name":"Cooking Skewer","id":6250,"count":1,"value":"150"},{"name":"Black Charcoal","id":6251,"count":1,"value":"150"},{"name":"Melange Pot","id":6248,"count":1,"value":"300"}],"PerdaOuLucro":["Savage BBQ",{"Fabric Price":114600},{"Market Price":"127888"},"Lucro de 11% total Lucro = 13288z"]}
+
+{"name":"Drosera Herb Stew","id":12433,"count":1,"value":"118000","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Large Cookpot","id":6255,"count":1,"value":"250"},{"name":"Red Herb","id":507,"count":3,"value":"2999"},{"name":"White Herb","id":509,"count":3,"value":"492"},{"name":"Blue Herb","id":510,"count":3,"value":"1998"},{"name":"Drosera Tentacle","id":6259,"count":3,"value":"25000"}],"PerdaOuLucro":["Drosera Herb Stew",{"Fabric Price":92017},{"Market Price":"118000"},"Lucro de 28% total Lucro = 25983z"]}
+
+{"name":"Minor Brisket","id":12431,"count":1,"value":"63999","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Large Cookpot","id":6255,"count":1,"value":"250"},{"name":"Beef Head","id":6254,"count":2,"value":"17950"}],"PerdaOuLucro":["Minor Brisket",{"Fabric Price":36450},{"Market Price":"63999"},"Lucro de 75% total Lucro = 27549z"]}
+
+{"name":"Warg Blood Cocktail","id":12430,"count":1,"value":"32999","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Cold Ice","id":6253,"count":2,"value":"2700"},{"name":"Blood Of Wolf","id":6252,"count":3,"value":"6000"}],"PerdaOuLucro":["Warg Blood Cocktail",{"Fabric Price":23700},{"Market Price":"32999"},"Lucro de 39% total Lucro = 9299z"]}
+
+{"name":"Siroma Icetea","id":12432,"count":1,"value":"124996","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Comodo Tropical Fruit","id":6258,"count":1,"value":"400"},{"name":"Ice Crystal","id":6257,"count":2,"value":"21000"},{"name":"Ice Piece","id":6256,"count":3,"value":"30000"}],"PerdaOuLucro":["Siroma Icetea",{"Fabric Price":132700},{"Market Price":"124996"},"Perda de 6% total Perda = -7704z"]}
+
+{"name":"Petite Tail Noodles","id":12434,"count":1,"value":"198990","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Cool Gravy","id":6262,"count":1,"value":"200"},{"name":"Fine Noodle","id":6261,"count":2,"value":"250"},{"name":"Petite's Tail","id":6260,"count":3,"value":"50000"}],"PerdaOuLucro":["Petite Tail Noodles",{"Fabric Price":151000},{"Market Price":"198990"},"Lucro de 31% total Lucro = 47990z"]}
+
+
+21/06/2021--13:41
+{"name":"Savage BBQ","id":12429,"count":1,"value":"127888","Recipes":[{"name":"Savage Meat","id":6249,"count":1,"value":"114000"},{"name":"Cooking Skewer","id":6250,"count":1,"value":"150"},{"name":"Black Charcoal","id":6251,"count":1,"value":"150"},{"name":"Melange Pot","id":6248,"count":1,"value":"300"}],"PerdaOuLucro":["Savage BBQ",{"Fabric Price":114600},{"Market Price":"127888"},"Lucro de 11% total Lucro = 13288z"]}
+
+{"name":"Drosera Herb Stew","id":12433,"count":1,"value":"118000","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Large Cookpot","id":6255,"count":1,"value":"250"},{"name":"Red Herb","id":507,"count":3,"value":"2999"},{"name":"White Herb","id":509,"count":3,"value":"492"},{"name":"Blue Herb","id":510,"count":3,"value":"1998"},{"name":"Drosera Tentacle","id":6259,"count":3,"value":"25000"}],"PerdaOuLucro":["Drosera Herb Stew",{"Fabric Price":92017},{"Market Price":"118000"},"Lucro de 28% total Lucro = 25983z"]}
+
+{"name":"Minor Brisket","id":12431,"count":1,"value":"63999","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Large Cookpot","id":6255,"count":1,"value":"250"},{"name":"Beef Head","id":6254,"count":2,"value":"17950"}],"PerdaOuLucro":["Minor Brisket",{"Fabric Price":36450},{"Market Price":"63999"},"Lucro de 75% total Lucro = 27549z"]}
+
+{"name":"Warg Blood Cocktail","id":12430,"count":1,"value":"32999","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Cold Ice","id":6253,"count":2,"value":"2700"},{"name":"Blood Of Wolf","id":6252,"count":3,"value":"6000"}],"PerdaOuLucro":["Warg Blood Cocktail",{"Fabric Price":23700},{"Market Price":"32999"},"Lucro de 39% total Lucro = 9299z"]}
+
+{"name":"Siroma Icetea","id":12432,"count":1,"value":"124996","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Comodo Tropical Fruit","id":6258,"count":1,"value":"400"},{"name":"Ice Crystal","id":6257,"count":2,"value":"21000"},{"name":"Ice Piece","id":6256,"count":3,"value":"30000"}],"PerdaOuLucro":["Siroma Icetea",{"Fabric Price":132700},{"Market Price":"124996"},"Perda de 6% total Perda = -7704z"]}
+
+{"name":"Petite Tail Noodles","id":12434,"count":1,"value":"198990","Recipes":[{"name":"Melange Pot","id":6248,"count":1,"value":"300"},{"name":"Cool Gravy","id":6262,"count":1,"value":"200"},{"name":"Fine Noodle","id":6261,"count":2,"value":"250"},{"name":"Petite's Tail","id":6260,"count":3,"value":"50000"}],"PerdaOuLucro":["Petite Tail Noodles",{"Fabric Price":151000},{"Market Price":"198990"},"Lucro de 31% total Lucro = 47990z"]}
+

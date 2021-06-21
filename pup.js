@@ -1,6 +1,32 @@
 const puppeteer = require("puppeteer");
-var regraNegocio = require("./regraNegocio");
+const regraNegocio = require("./regraNegocio");
 const fs = require("fs");
+const { stringify } = require("querystring");
+
+//função de horas
+function addZero(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+var timeNow = new Date();
+var dd = String(timeNow.getDate()).padStart(2, "0");
+var mm = String(timeNow.getMonth() + 1).padStart(2, "0"); //January is 0!
+var yyyy = timeNow.getFullYear();
+var minutes = timeNow.getMinutes();
+var hour = timeNow.getHours();
+
+timeNow = dd + "/" + mm + "/" + yyyy + "--" + hour + ":" + minutes;
+
+//grava de outro jeito
+
+let pathName = "./history/file.txt";
+const CreateFiles = fs.createWriteStream(pathName, {
+  flags: "a",
+});
+
 const foodIds = {
   savageBBQids: [
     [12429, 1],
@@ -9,7 +35,6 @@ const foodIds = {
     [6251, 1],
     [6248, 1],
   ],
-
   droserHerbStewids: [
     [12433, 1],
     [6248, 1],
@@ -46,10 +71,11 @@ const foodIds = {
     [6260, 3],
   ],
 };
+
 //cria a página através do webkit
 (async () => {
   const wsChromeEndpointurl =
-    "ws://127.0.0.1:9222/devtools/browser/ac24b71f-4648-4bc0-8c16-a4376ffd0954";
+    "ws://127.0.0.1:9222/devtools/browser/e069a440-a103-407c-bd0b-dd775ed63618";
   const browser = await puppeteer.connect({
     browserWSEndpoint: wsChromeEndpointurl,
   });
@@ -60,30 +86,31 @@ const foodIds = {
   const url = "https://www.novaragnarok.com/?module=vending&action=item&id=";
 
   //executaveis
+  //dar um array em cada comida e adicionar e salvar adicionando um /n ou texto etc com .map
+  //adicionar data do dia
 
-  const result = {
-    SavagBBQ: await criaItemCompleto(foodIds.savageBBQids),
+  const ArrFoodIdsValues = Object.values(foodIds);
+  const ArrFoodIdsKeys = Object.keys(foodIds);
+  let ArrFoodValuesUpdate = [];
 
-    Drosera_Herb_Stew: await criaItemCompleto(foodIds["droserHerbStewids"]),
+  for (let index = 0; index < ArrFoodIdsValues.length; index++) {
+    const element = ArrFoodIdsValues[index];
+    const foodResult = await criaItemCompleto(element);
+    ArrFoodValuesUpdate.push(foodResult);
+  }
 
-    Minor: await criaItemCompleto(foodIds.Minor_Brisket_ids),
+  //transformar obj em array
+  CreateFiles.write("\r\n");
+  CreateFiles.write(timeNow + "\r\n");
 
-    Warg: await criaItemCompleto(foodIds.Warg_Blood_Cocktail_ids),
+  for (let index = 0; index < ArrFoodValuesUpdate.length; index++) {
+    let element = ArrFoodValuesUpdate[index];
+    element = JSON.stringify(element);
+    CreateFiles.write(element + "\r\n");
+    CreateFiles.write("\r\n");
+  }
 
-    Siroma: await criaItemCompleto(foodIds.Siroma_Icetea_ids),
-
-    Petite: await criaItemCompleto(foodIds.Petite_Tail_Noodles_ids),
-  };
-
-  fs.writeFile("./save.txt", JSON.stringify(result), "utf8", function (err) {
-    if (err) {
-      return console.log(err);
-    }
-    console.log(result);
-
-    console.log("The file was saved!");
-  });
-
+  console.log("fim");
   //gravar dados coletados<<
 
   //executaveis
